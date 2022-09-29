@@ -1,0 +1,23 @@
+trigger AccounTrrigger on Account (before insert,before update,after update,after insert) {
+    if(Trigger.IsBefore){
+        if(Trigger.IsInsert){
+             AccountTriggerHandeler.beforeIn(Trigger.new);
+        }
+        else{
+            AccountTriggerHandeler.beforeInsert(Trigger.newMap,Trigger.oldMap);
+        }
+    }
+    
+    if(Trigger.isAfter){
+       
+        if(trigger.isUpdate){
+            AccountTriggerHandeler.afterupdate(trigger.oldMap,trigger.new);
+        }
+        
+        if(trigger.isInsert){
+             AccountTriggerHandeler.afterinsert(trigger.new);
+             AccountTriggerHandeler.afterinsertCreatecontact(trigger.new);
+            
+        }
+    }
+}

@@ -1,0 +1,16 @@
+trigger ContactTrigger on Contact (before insert,after insert,after delete) {
+	if(Trigger.isBefore){
+        if(Trigger.isInsert){
+            ContactTriggerHandeler.createandcheck(trigger.new); //Assignment 1 - 1
+        }
+    }
+     if(Trigger.isAfter){
+        if(Trigger.isInsert){
+            ContactTriggerHandeler.createContactRelation(trigger.new);  //Assignment 1 - 4
+            ContactTriggerHandeler.updateNumberOfContact(trigger.new);  //Assignment 1 -5 (pt.1)
+        }
+         if(Trigger.isDelete){
+             ContactTriggerHandeler.updateNumberOfContactondelete(trigger.old);  //Assignment 1 -5 (pt.2)
+         }
+    }
+}

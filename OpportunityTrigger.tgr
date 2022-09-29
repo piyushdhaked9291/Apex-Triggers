@@ -1,0 +1,19 @@
+trigger OpportunityTrigger on Opportunity (after update) {
+    if(trigger.isAfter){
+        if(trigger.isUpdate){
+            //OpportunityTriggerHandeler.afterupdate(trigger.oldMap,trigger.new);
+           //OpportunityTriggerHandeler.afterupdateoppo(trigger.new);  				// Assignment  1 - 2
+            OpportunityTriggerHandeler.sendmail(trigger.oldMap,trigger.new);
+            
+            
+        }
+    }
+    
+    if(Trigger.isBefore){
+        if(Trigger.isUpdate){
+            OpportunityTriggerHandeler.countroleandstop(trigger.oldMap,trigger.new);
+        }
+    }
+    
+
+}
